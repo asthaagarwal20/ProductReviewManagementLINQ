@@ -44,7 +44,12 @@ namespace ProductReviewManagementLINQ
             var tempArray = new int[] { 1, 4, 9 };
             var result1=products.Where(x=>x.rating>3&&tempArray.Contains(x.productId)).ToList();
             Display(result1);
-
+            //uc4
+            var result3=products.GroupBy(x=>x.productId).Select (x=>new {productId=x.Key,Count=x.Count()});
+            foreach(var item in result3)
+            {
+                Console.WriteLine("Product id is " + item.productId + " Count is " + item.Count);
+            }
         }
     }
 
