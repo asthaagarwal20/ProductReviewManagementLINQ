@@ -56,6 +56,9 @@ namespace ProductReviewManagementLINQ
             {
                 Console.WriteLine("Product id is " + item.productID + " Review is " + item.Review);
             }
+            //uc6
+            var result5 = products.Skip(5);
+            Display(result5.ToList());
         }
     }
 
