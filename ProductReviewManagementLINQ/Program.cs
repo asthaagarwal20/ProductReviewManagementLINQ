@@ -50,6 +50,12 @@ namespace ProductReviewManagementLINQ
             {
                 Console.WriteLine("Product id is " + item.productId + " Count is " + item.Count);
             }
+            //uc5
+            var result4 = (from product in products select product).Select(x=>new { productID = x.productId, Review = x.review });
+            foreach (var item in result4)
+            {
+                Console.WriteLine("Product id is " + item.productID + " Review is " + item.Review);
+            }
         }
     }
 
