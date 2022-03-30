@@ -8,6 +8,13 @@ namespace ProductReviewManagementLINQ
 {
     internal class Program
     {
+        public static void Display(List<Products> result)
+        {
+            foreach (var product in result)
+            {
+                Console.WriteLine("Product id is "+product.productId+" User id is "+product.userId+" product rating is "+product.rating);
+            }
+        }
         static void Main(string[] args)
         {
             List<Products> products = new List<Products>()
@@ -15,14 +22,14 @@ namespace ProductReviewManagementLINQ
                 new Products() { productId = 1, userId = 1, rating = 6, review = "good", isLike = true },
                 new Products() { productId = 2, userId = 1, rating = 4, review = "good", isLike = true },
                 new Products() { productId = 3, userId = 2, rating = 5, review = "bad", isLike = false },
-                new Products() { productId = 1, userId = 3, rating = 6, review = "good", isLike = true },
+                new Products() { productId = 4, userId = 3, rating = 6, review = "good", isLike = true },
                 new Products() { productId = 5, userId = 1, rating = 6, review = "good", isLike = true },
                 new Products() { productId = 3, userId = 1, rating = 10, review = "good", isLike = true },
                 new Products() { productId = 7, userId = 2, rating = 5, review = "bad", isLike = false },
                 new Products() { productId = 8, userId = 3, rating = 6, review = "good", isLike = true },
                 new Products() { productId = 11, userId = 1, rating = 12, review = "good", isLike = true },
                 new Products() { productId = 10, userId = 1, rating = 4, review = "bad", isLike = false },
-                new Products() { productId = 11, userId = 2, rating = 5, review = "good", isLike = true },
+                new Products() { productId = 9, userId = 2, rating = 5, review = "good", isLike = true },
                 new Products() { productId = 10, userId = 3, rating = 6, review = "good", isLike = true },
                 new Products() { productId = 12, userId = 3, rating = 6, review = "good", isLike = true },
                 new Products() { productId = 1, userId = 1, rating = 6, review = "good", isLike = true },
@@ -32,10 +39,12 @@ namespace ProductReviewManagementLINQ
             };
             //uc2
             var result = products.OrderByDescending(x=>x.rating).Take(3);
-            foreach (var product in result)
-            {
-                Console.WriteLine(product.rating);
-            }
+            Display(result.ToList());
+            //uc3
+            var tempArray = new int[] { 1, 4, 9 };
+            var result1=products.Where(x=>x.rating>3&&tempArray.Contains(x.productId)).ToList();
+            Display(result1);
+
         }
     }
 
